@@ -13,7 +13,9 @@ Note that logging to a file is expensive and should only be present in special d
 
 ###Usage
 
-1. In your Application sub-class, do this:
+**Step 1:**
+
+In your Application sub-class, do this:
 
 ```java
     private static final boolean LOG_TO_FILE = true;
@@ -24,8 +26,13 @@ Note that logging to a file is expensive and should only be present in special d
     }
 ```
 
-2. Change all your `android.util.Log` imports to `com.github.curioustechizen.xlog.Log`.
-3. There is not Step 3!
+**Step 2:**
+
+Change all your `android.util.Log` imports to `com.github.curioustechizen.xlog.Log`.
+
+**Step 3:** 
+
+There is no Step 3!
 
 
 See the example and the class documentation for `com.github.curioustechizen.xlog.Log` for more info on usage.
