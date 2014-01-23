@@ -39,16 +39,21 @@ Contributions in the form of issues and pull requests are most welcome.
 ### FAQ
 
 **What do I do with the log file?**
+
 Well, that's up to you. Ideally, you'll have a button somewhere in your app that triggers an `ACTION_SEND` Intent to send the log file contents to you via e-mail etc. If the file is in external storage, you could just ask your testers to navigate to the file using a "standard" file browser and send you the file itself. But hey, you're not assuming that the user device has external storage, are you?
 
 **What happens if the log file is not available?**
+
 If the log file is not available (for example it is on external storage and said storage is mounted on a laptop etc) then the write will fail. You will see the message for this failure in logcat but obviously not in the log file. Note that in this we do not follow a fail-fast policy. Your app will continue to work since crashing when a log statement fails is a very very bad idea.
 
 **Why is the log entry in the file not exactly the same as that in logcat?**
+
 `android.util.Log` uses native code to actually write the final entry to logcat. This library, on the other hand, makes an approximation of that using a `StringBuilder`. I am guessing this serves most purposes.
 
 **Why not simply use `Runtime` class and execute `logcat` command?**
+
 Because using `logcat` command is not a part of the SDK. The behavior has [changed and broken apps](http://commonsware.com/blog/2012/07/12/read-logs-regression.html) in the past - there's no guarantee that this won't happen again.
 
 **Why is logging to file expensive?**
+
 Because every log statement is evaluated twice. What is logged to logcat is not the same string that is also inserted into a file. Instead, we prepare our own String to log into the file. This is, of course, in addition to the file IO related overhead.
